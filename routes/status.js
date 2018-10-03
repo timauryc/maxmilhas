@@ -1,13 +1,13 @@
-const cpfController = require('../controllers').cpfController
+const statusController = require('../controllers').statusController
 
 module.exports = function (app) {
-
     app.get('/status', (req, res) => {
-        cpfController.getCPFStatus(req.params.cpfNumber, (err, result) => {
-            if (err)
+        statusController.getStatus((err, result) => {
+            if (err) {
                 res.status(500).send(err)
-            else
+            } else {
                 res.status(200).send(result)
+            }
         })
     })
 

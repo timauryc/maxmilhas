@@ -1,3 +1,4 @@
 module.exports = {
-	cpfController: require('./cpf')
+	cpfController: require('./cpf'),
+	statusController: require('./status')
 };
