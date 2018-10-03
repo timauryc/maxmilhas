@@ -1,8 +1,7 @@
 const Datastore = require('nedb')
 var db = {};
-//db.cpfs = new Datastore({ filename: './data/cpfs.db', autoload: true });
-db.cpfs = new Datastore();
-db.cpfs = new Datastore();
+db.cpfs = new Datastore({ filename: './data/cpfs.db', autoload: true });
+//db.cpfs = new Datastore();
 
 
 function getCPF(cpfNumber, callback) {
