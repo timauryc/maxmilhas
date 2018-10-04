@@ -2,6 +2,16 @@ const cpfController = require('../controllers').cpfController
 
 module.exports = function (app) {
 
+    app.get('/cpf/:cpfNumber/estado', (req, res) => {
+        cpfController.getCPFStatus(req.params.cpfNumber, (err, result) => {
+            if (err) {
+                res.status(500).send(err)
+            } else {
+                res.status(200).send(result)
+            }
+        })
+    })
+    
     app.post('/cpf', (req, res) => {
         //console.log(cpf)
         cpfController.saveCPF(req.body, (err, result) => {
@@ -13,15 +23,6 @@ module.exports = function (app) {
         })
     })
 
-    app.get('/cpf/:cpfNumber/estado', (req, res) => {
-        cpfController.getCPFStatus(req.params.cpfNumber, (err, result) => {
-            if (err) {
-                res.status(500).send(err)
-            } else {
-                res.status(200).send(result)
-            }
-        })
-    })
 
     app.delete('/cpf/:cpfNumber', (req, res) => {
         cpfController.deleteCPF(req.params.cpfNumber, (err, result) => {
@@ -34,6 +35,7 @@ module.exports = function (app) {
     })
 
     app.patch('/cpf/estado', (req, res) => {
+        console.log('recebi um patch')
         cpfController.updateCPFStatus(req.body, (err, result) => {
             if (err) {
                 res.status(500).send(err)
