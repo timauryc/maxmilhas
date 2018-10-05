@@ -15,6 +15,7 @@
 {"_id":"555","status":"FREE"}
 {"_id":"576","status":"BLOCK"}
 {"_id":"666"}
+{"_id":"702.487.596-80","status":"FREE"}
 {"_id":"777"}
 {"_id":"789","status":"FREE"}
 {"_id":"8888"}
@@ -22,3 +23,6 @@
 {"_id":"999","status":""}
 {"_id":"ee3","status":"hey"}
 {"_id":"ewgregsr","status":"hey"}
+{"$$deleted":true,"_id":"702.487.596-80"}
+{"_id":"702.487.596-80","status":"FREE"}
+{"_id":"702.487.596-80","status":"BLOCK"}
