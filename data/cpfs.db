@@ -1,4 +1,5 @@
 {"_id":"123","status":"BLOCK"}
+{"_id":"2352","status":"FREE"}
 {"_id":"253453","status":"hey"}
 {"_id":"325352","status":"undefinedhey"}
 {"_id":"333","status":"FREE"}
@@ -12,12 +13,16 @@
 {"_id":"46545","status":"hey"}
 {"_id":"5345345","status":"undefinedhey"}
 {"_id":"555","status":"FREE"}
+{"_id":"576","status":"BLOCK"}
 {"_id":"666"}
 {"_id":"777"}
 {"_id":"789","status":"BLOCK"}
 {"_id":"8888"}
+{"_id":"987","status":"FREE"}
 {"_id":"999","status":""}
 {"_id":"ee3","status":"hey"}
 {"_id":"ewgregsr","status":"hey"}
-{"_id":"987","status":"FREE"}
-{"_id":"576","status":"BLOCK"}
+{"_id":"789","status":"FREE"}
+{"$$deleted":true,"_id":"789"}
+{"_id":"789","status":"BLOCK"}
+{"_id":"789","status":"FREE"}
