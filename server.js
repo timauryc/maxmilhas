@@ -23,3 +23,5 @@ require('./routes/server')(app);
 app.listen(process.env.PORT || PORT, function () {
     console.log('listening on port: ', process.env.PORT || PORT);
 });
+
+module.exports = app;

@@ -4,14 +4,17 @@
   "description": "maxmilhas technical test",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha './test/**/*.spec.js'",
     "start": "node server.js"
   },
   "author": "Carlos Timaury (timauryc@gmail.com)",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.3",
+    "chai": "^4.2.0",
+    "chai-http": "^4.2.0",
     "express": "^4.16.3",
+    "mocha": "^5.2.0",
     "nedb": "^1.8.0"
   }
 }
