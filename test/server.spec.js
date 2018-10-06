@@ -4,6 +4,7 @@ const should = chai.should();
 const chaiHttp = require('chai-http');
 
 const server = require('../server')
+const stop = require('../server')
 const databaseController = require('../controllers/database')
 
 chai.use(chaiHttp);
@@ -13,6 +14,7 @@ describe('Server', function () {
         _id: "111.111.111-11",
         status: "FREE"
     }
+    
     beforeEach(function (done) {
         databaseController.saveCPF(dummyCPFObject, function (err, newObject) {
             if (err)
@@ -27,6 +29,7 @@ describe('Server', function () {
             done()
         })
     });
+ 
     describe('Get a cpf (GET /cpf/<cpf number>/estado)', function () {
         it('should return the correct object if cpf registered', function (done) {
             chai.request(server)
