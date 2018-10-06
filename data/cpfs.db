@@ -7,6 +7,7 @@
 {"_id":"345534","status":"undefinedhey"}
 {"_id":"3543","status":""}
 {"_id":"444","status":"FREE"}
+{"_id":"444.444.444-44","status":"FREE"}
 {"_id":"453454","status":"undefinedhey"}
 {"_id":"45674","status":""}
 {"_id":"4574","status":"undefinedhey"}
@@ -15,7 +16,10 @@
 {"_id":"555","status":"FREE"}
 {"_id":"576","status":"BLOCK"}
 {"_id":"666"}
-{"_id":"702.487.596-80","status":"FREE"}
+{"_id":"702.487.596-30","status":"BLOCK"}
+{"_id":"702.487.596-33","status":"BLOCK"}
+{"_id":"702.487.599-96","status":"FREE"}
+{"_id":"702.487.599-99","status":"FREE"}
 {"_id":"777"}
 {"_id":"789","status":"FREE"}
 {"_id":"8888"}
@@ -23,6 +27,3 @@
 {"_id":"999","status":""}
 {"_id":"ee3","status":"hey"}
 {"_id":"ewgregsr","status":"hey"}
-{"$$deleted":true,"_id":"702.487.596-80"}
-{"_id":"702.487.596-80","status":"FREE"}
-{"_id":"702.487.596-80","status":"BLOCK"}

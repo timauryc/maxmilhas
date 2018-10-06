@@ -1,6 +1,8 @@
 $(document).ready(function () {
     console.log("hey, im ready :)")
 
+    const unknownError = "Ops, parece ter acontecido um error com o servidor, por favor, tente novamente"
+
     $("#cpf-input").mask('000.000.000-00', { reverse: true });
 
     $(".button").click(function () {
@@ -47,7 +49,18 @@ $(document).ready(function () {
     function consultCPF(inputData) {
         $.get(`/cpf/${inputData.cpfNumber}/estado`, function (data, status) {
             console.log("Data: " + JSON.stringify(data) + "\nStatus: " + status);
-            displayResult("Data: " + JSON.stringify(data) + "\nStatus: " + status);
+            if (status != "success") {
+                displayResult(unknownError)
+            } else if (!data) {
+                displayResult("cpf não registrado")
+            } else {
+                try {
+                    displayResult(`O cpf ${data._id} se encontra em estado ${data.status}`)
+                } catch (error) {
+                    console.log(error)
+                    displayResult(unknownError)
+                }
+            }
         });
     }
 

@@ -9,11 +9,15 @@ app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 app.use(express.static('public'));
 
 app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/views/index.html');
+    res.sendFile(__dirname + '/views/cpf.html');
+})
+
+app.get('/status', (req, res) => {
+    res.sendFile(__dirname + '/views/status.html');
 })
 
 require('./routes/cpf')(app);
-require('./routes/status')(app);
+require('./routes/server')(app);
 
 
 app.listen(process.env.PORT || PORT, function () {

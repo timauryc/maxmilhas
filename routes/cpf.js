@@ -3,45 +3,32 @@ const cpfController = require('../controllers').cpfController
 module.exports = function (app) {
 
     app.get('/cpf/:cpfNumber/estado', (req, res) => {
-        cpfController.getCPFStatus(req.params.cpfNumber, (err, result) => {
-            if (err) {
-                res.status(500).send(err)
-            } else {
-                res.status(200).send(result)
-            }
+        cpfController.getCPFStatus(req.params.cpfNumber, (responseObject) => {
+            console.log(JSON.stringify(responseObject))
+            res.status(responseObject.status).send(responseObject.body)
         })
     })
-    
+
     app.post('/cpf', (req, res) => {
-        //console.log(cpf)
-        cpfController.saveCPF(req.body, (err, result) => {
-            if (err) {
-                res.status(500).send(err)
-            } else {
-                res.status(200).send(result)
-            }
+        cpfController.saveCPF(req.body, (responseObject) => {
+            console.log(JSON.stringify(responseObject))
+            res.status(responseObject.status).send(responseObject.body)
         })
     })
 
 
     app.delete('/cpf/:cpfNumber', (req, res) => {
-        cpfController.deleteCPF(req.params.cpfNumber, (err, result) => {
-            if (err) {
-                res.status(500).send(err)
-            } else {
-                res.status(200).send({ numeroApagados: result })
-            }
+        cpfController.deleteCPF(req.params.cpfNumber, (responseObject) => {
+            console.log(JSON.stringify(responseObject))
+            res.status(responseObject.status).send(responseObject.body)
         })
     })
 
     app.patch('/cpf/estado', (req, res) => {
         console.log('recebi um patch')
-        cpfController.updateCPFStatus(req.body, (err, result) => {
-            if (err) {
-                res.status(500).send(err)
-            } else {
-                res.status(200).send({ numeroReemplazados: result })
-            }
+        cpfController.updateCPFStatus(req.body, (responseObject) => {
+            console.log(JSON.stringify(responseObject))
+            res.status(responseObject.status).send(responseObject.body)
         })
     })
 }
