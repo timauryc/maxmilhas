@@ -19,6 +19,9 @@ function saveCPF(cpfObject, callback) {
     if (isValidCPF(cpfObject._id) && isValidStatus(cpfObject.status)) {
         databaseController.saveCPF(cpfObject, (err, result) => {
             if (err) {
+                if (err.errorType && err.errorType == "uniqueViolated") {
+                    return callback(createResponseObject(409, err))
+                }
                 return callback(createResponseObject(500, err))
             }
             return callback(createResponseObject(201, result))

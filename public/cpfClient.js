@@ -3,6 +3,16 @@ $(document).ready(function () {
 
     const unknownError = "Ops, parece ter acontecido um error com o servidor, por favor, tente novamente"
 
+    let dictionary = {
+        unknownError: "Ops, parece ter acontecido um error com o servidor, por favor, tente novamente",
+        cpfInvalid :  "Cpf invalido",
+        cpfNotRegistered : "Cpf não registrado",
+        cpfDeleteSuccess : "Cpf apagado com sucesso",
+        cpfUpdateSuccess : "Cpf modificado com sucesso",
+        cpfAlreadyRegistered : "Parece ser que esse cpf ja foi inserido previamente."
+    }
+
+
     $("#cpf-input").mask('000.000.000-00', { reverse: true });
 
     $(".button").click(function () {
@@ -26,7 +36,7 @@ $(document).ready(function () {
                     console.log("I should not be here, anyways...42 is the answer")
             }
         } else {
-            displayResult("Cpf invalido")
+            displayResult(dictionary.cpfInvalid)
         }
     });
 
@@ -50,24 +60,39 @@ $(document).ready(function () {
         $.get(`/cpf/${inputData.cpfNumber}/estado`, function (data, status) {
             console.log("Data: " + JSON.stringify(data) + "\nStatus: " + status);
             if (status != "success") {
-                displayResult(unknownError)
+                displayResult(dictionary.unknownError)
             } else if (!data) {
-                displayResult("cpf não registrado")
+                displayResult(dictionary.cpfNotRegistered)
             } else {
                 try {
                     displayResult(`O cpf ${data._id} se encontra em estado ${data.status}`)
                 } catch (error) {
                     console.log(error)
-                    displayResult(unknownError)
+                    displayResult(dictionary.unknownError)
                 }
             }
         });
     }
 
     function insertCPF(inputData) {
-        $.post('/cpf', { _id: inputData.cpfNumber, status: inputData.cpfStatus }, function (data, status) {
-            console.log("Data: " + JSON.stringify(data) + "\nStatus: " + status);
-            displayResult("Data: " + JSON.stringify(data) + "\nStatus: " + status);
+        $.ajax({
+            url: `/cpf`,
+            type: 'POST',
+            data: JSON.stringify({ "_id": inputData.cpfNumber, "status": inputData.cpfStatus }),
+            contentType: 'application/json',
+            processData: false,
+            dataType: 'json',
+            success: function (result) {
+                console.log("Data: " + JSON.stringify(result));
+                displayResult(`o cfp ${result._id} com status ${result.status} foi inserido com sucesso`);
+            },
+            error: function (errorObject, textStatus, errorThrown) {
+                if (errorObject.status == 409) {
+                    displayResult(dictionary.cpfAlreadyRegistered);
+                } else {
+                    displayResult(dictionary.unknownError)
+                }
+            }
         });
     }
 
@@ -77,11 +102,14 @@ $(document).ready(function () {
             type: 'DELETE',
             success: function (result) {
                 console.log("Data: " + JSON.stringify(result));
-                displayResult("Data: " + JSON.stringify(result));
+                if (result.totalDeleted) {
+                    displayResult(dictionary.cpfDeleteSuccess)
+                } else {
+                    displayResult(dictionary.cpfNotRegistered)
+                }
             },
             error: function (data) {
-                console.log('Error:', data);
-                displayResult('Error:', data);
+                displayResult(dictionary.unknownError)
             }
         });
     }
@@ -96,11 +124,15 @@ $(document).ready(function () {
             dataType: 'json',
             success: function (result) {
                 console.log("Data: " + JSON.stringify(result));
-                displayResult("Data: " + JSON.stringify(result));
+                if (result.totalReplaced) {
+                    displayResult(dictionary.cpfUpdateSuccess)
+                } else {
+                    displayResult(dictionary.cpfNotRegistered)
+                }
             },
             error: function (data) {
                 console.log('Error:', data);
-                displayResult('Error:', data);
+                displayResult(dictionary.unknownError)
             }
         });
     }
