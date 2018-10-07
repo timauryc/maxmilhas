@@ -69,6 +69,7 @@ describe('Server', function () {
 
     describe('Insert a cpf (POST /cpf)', function () {
         it('should return the object inserted with the correct status', function (done) {
+            this.timeout(4000);
             chai.request(server)
                 .post('/cpf')
                 .send({ '_id': '222.222.222-22', 'status': 'FREE' })
